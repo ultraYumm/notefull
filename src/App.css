@@ -87,14 +87,20 @@ h1 {
     font-size: 100px;
 }
 
+
+h2 {
+    font-size: 80px;
+}
+
 .noteName {
     font-size: 50px;
+    /*color: #bdbdbd;*/
+    
 }
 
 .noteSummary {
     position: relative;
-    margin-left: 400px;
-    padding-top: 100px;
+    padding-top: 20px;
     z-index: 1;   
     
 }
@@ -105,18 +111,20 @@ h1 {
     height: 100px;
     margin-left: -40px;
     padding-left: 20px;
+    margin-left: 20px;
     padding-top: 40px;
     list-style: none;
     width: 2000px;
 
 }
 
+
 .noteName {
     background-color: #010d1e;
     font-size: 80px;
     font-weight: bolder;
     height: 100px;
-    margin-left: -40px;
+    margin-left: 20px;
     padding-left: 20px;
     padding-top: 40px;
     list-style: none;
@@ -157,7 +165,9 @@ h1 {
 
 .noteDetail {
     background-color: white;
-    padding-top: -300px;
+    margin-top: 100px;
+    margin-left: 1000px;
+    width: 100%;
 }
 
 .content {
@@ -165,6 +175,7 @@ h1 {
     font-size: 50px;
     width: 2000px;
     list-style: none;
+    padding: 20px;
 }
 
 .noteFolderTitle {
@@ -183,5 +194,74 @@ h1 {
     height: 130px;
     border: none;
     width: 570px;
+    text-align: left;
+    padding-left: 50px;
     
+}
+
+.noteList {
+    padding-top: 350px;
+    margin-left: 1000px;
+}
+
+
+
+.noteButton {
+    background-color: #010d1e;
+    font-size: 80px;
+    font-weight: bold;
+    color: #cacaca;
+    text-align: left;
+    width: 2000px;
+    border: none;
+}
+
+
+input {
+    width: 1000px;
+    height: 100px;
+}
+
+select {
+    width: 1000px;
+    height: 100px;
+    color: black;
+    font-size: 60px;
+}
+
+form {
+    width: 1005px;
+}
+
+
+label {
+    color: #cacaca;
+    font-size: 60px;
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
+
+.inputBox {
+    background-color: #1D3656;
+    width: 1050px;
+    padding: 20px;
+}
+
+
+.addNoteFormButton {
+    background-color: #010d1e;
+    width: 500px;
+    height: 100px;
+    border: none;
+    border-radius: 15px 15px 15px 15px;
+    color: #cacaca;
+    font-size: 60px;
+    font-weight: bold;
+
+}
+
+
+.inputItems {
+    padding-top: 50px;
+    list-style: none;
 }

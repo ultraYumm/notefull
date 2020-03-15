@@ -3,7 +3,7 @@ import './App.css';
 import Nav from './Nav';
 import AddFolder from './AddFolder';
 import AddNote from './AddNote';
-//import FolderList from './FolderList';
+import Addnoteform from './Addnoteform';
 //import Notessummary from './Notessummary';
 //import NotesDetail from './NotesDetail';
 //import Importanttab from './Importanttab';
@@ -23,8 +23,8 @@ class App extends Component {
   };
 
   state = {
-    currentTabIndex: 0,
-    currentNoteIndex: 0,
+    currentTabIndex: "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1",
+    currentNoteIndex: "cbc787a0-ffaf-11e8-8eb2-f2801f1b9fd1"
   };
 
   
@@ -33,9 +33,14 @@ class App extends Component {
     
     const { store } = this.props
     
+    const folderButtonClick = (folderId) => {
+      this.setState({ currentTabIndex: folderId })
+      
+    }
 
-    const handleButtonClick = (index) => {
-      this.setState({ currentTabIndex: index })
+    const noteButtonClick = (id) => {
+      this.setState({ currentNoteIndex: id })
+      
     }
 
     const buttons = store.folders.map((item, index) =>(
@@ -43,7 +48,7 @@ class App extends Component {
       <li className= "folderLi"><button 
       key = {index} 
       className = "folderButton"
-      onClick={handleButtonClick}
+      onClick={() => folderButtonClick(item.id)}
       >
         {item.name}
         <span className = "number">
@@ -51,25 +56,48 @@ class App extends Component {
       </button>
       </li>))
 
-      
-    const currentTabDetail = store.notes.filter(num=> num.folderId === store.folders[this.state.currentTabIndex].id).map((item) => 
+    const folderList = store &&
+    store.folders  && store.folders.map((item) =>(
+             item.name))
+
+    const currentTabDetail = store.notes.filter(num=> num.folderId === this.state.currentTabIndex).map((item) => 
       item)
     
-    const noteName = currentTabDetail.map((item) => (
+    const noteName = currentTabDetail.map((item, index) => (
       <div className = "noteSummary">
         <ul>
-      <li  className= "noteName">
-        {item.name}
-        <span className= "remove"><RemoveNote/></span>
-      </li>
-      <li className= "noteLi">Modified <Moment format="D MMM YYYY" withTitle>{item.modified}</Moment> </li>
-      </ul>
+          <li  className= "noteName"><button 
+          key = {index}
+          className= "noteButton"
+          onClick={() => noteButtonClick(item.id)}
+          >
+            {item.name}
+            <span className= "remove"><RemoveNote/></span> </button>
+          </li>
+          <li className= "noteLi">Modified <Moment format="D MMM YYYY" withTitle>{item.modified}</Moment> </li>
+        </ul>
       </div>
       ))
 
+      const currentNoteDetailArr = store.notes.filter(num=> num.id === this.state.currentNoteIndex)
 
+      const currentNoteDetails = 
+        <div className = "noteSummary">
+          <ul>
+            <li  className= "noteName"><button className= "noteButton"
+            >
+            {currentNoteDetailArr[0].name}
+            <span className= "remove"><RemoveNote/></span> </button>
+            </li>
+            <li className= "noteLi">Modified <Moment format="D MMM YYYY" withTitle> {currentNoteDetailArr[0].modified}</Moment> </li>
+            <li className = "content">{currentNoteDetailArr[0].content}</li>
+          </ul>
+        </div>
+      
 
+    
       return (
+        
       <main className="App">
        
        <header><Nav /></header>
@@ -77,15 +105,21 @@ class App extends Component {
        <div className = "folderBox">
          {buttons}
        <div><AddFolder/></div> 
-       </div>
-       
-     
+       </div>    
 
        {store && store.notes.length && store.folders.length && (
-       <div className = "noteSummary">{noteName}</div>
+       <div className= "noteList">{noteName}</div>
        )}
 
-       <div><AddNote/></div>
+      <div><Addnoteform
+      folderList = {folderList}
+
+      /></div>
+      <div><AddNote/></div>
+
+      {store && store.notes.length && store.folders.length && (
+       <div className= "noteDetail">{currentNoteDetails}</div>
+       )}
        
       </main>
     );

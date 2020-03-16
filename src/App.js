@@ -44,7 +44,7 @@ class App extends Component {
      //will need to assign an ID to the new note
 
      const newNoteContent = [
-      ...this.state.content,
+      ...this.state.notes,
       {content: noteContent}
     ]
 

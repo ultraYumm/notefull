@@ -69,7 +69,7 @@ class App extends Component {
     
     const folderButtonClick = (folderId) => {
       this.setState({ currentTabIndex: folderId })
-      console.log(store.folders)
+      console.log(this.state.folders)
     }
     console.log(this.state.store.folders)
 
@@ -78,7 +78,7 @@ class App extends Component {
       
     }
 
-    const buttons = store.folders.map((item, index) =>(
+    const buttons = this.state.folders.map((item, index) =>(
      
       <li className= "folderLi"><button 
       key = {index} 
@@ -87,28 +87,27 @@ class App extends Component {
       >
         {item.name}
         <span className = "number"> 
-        {store.notes.filter(num=> num.folderId === item.id).length}
+        {this.state.notes.filter(num=> num.folderId === item.id).length}
         </span>
 
          </button>
       </li>))
 
      
-   const folderList = store &&
-    store.folders && store.folders.map((item) =>(
+   const folderList = this.state &&
+    this.state.folders && this.state.folders.map((item) =>(
              item.name))
 
-   const folderIds = store &&
-   store.folders && store.folders.map((item) =>(
+   const folderIds = this.state &&
+   this.state.folders && this.state.folders.map((item) =>(
                       item.id))
 
-    const currentTabDetail = store.notes.filter(num=> num.folderId === this.state.currentTabIndex).map((item) => 
+    const currentTabDetail = this.state.notes.filter(num=> num.folderId === this.state.currentTabIndex).map((item) => 
       item)
 
 
     
-      
-    
+          
     const noteName = currentTabDetail.map((item, index) => (
       <div className = "noteSummary">
         <ul>
@@ -125,7 +124,7 @@ class App extends Component {
       </div>
       ))
 
-      const currentNoteDetailArr = store.notes.filter(num=> num.id === this.state.currentNoteIndex)
+      const currentNoteDetailArr = this.state.notes.filter(num=> num.id === this.state.currentNoteIndex)
 
       
 
@@ -155,7 +154,7 @@ class App extends Component {
        <div><AddFolder/></div> 
        </div>    
 
-       {store && store.notes.length && store.folders.length && (
+       {this.state && this.state.notes.length && this.state.folders.length && (
        <div className= "noteList">{noteName}</div>
        )}
 
@@ -167,7 +166,7 @@ class App extends Component {
       /></div>
       <div><AddNote/></div>
 
-      {store && store.notes.length && store.folders.length && (
+      {this.state && this.state.notes.length && this.state.folders.length && (
        <div className= "noteDetail">{currentNoteDetails}</div>
        )}
        

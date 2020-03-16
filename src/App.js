@@ -37,24 +37,26 @@ class App extends Component {
   
   
   
-    handleAddNote = (noteName, noteContent, noteFolder, folderId) => {
-      console.log(noteName, noteContent, noteFolder, folderId)
+    handleAddNote = (noteName, noteContent, /*noteFolder, */folderId) => {
+      console.log(noteName, noteContent, /*noteFolder, */folderId)
   
       const newNotesArray = [
         ...this.state.notes,
-        {name: noteName, content: noteContent},
+        {name: noteName, 
+        content: noteContent,
+        folderId: folderId},
         
       ]
   
-      const newFolder = [
+      /*const newFolder = [
         ...this.state.folders,
         {name: noteFolder,
         id: folderId},
         
-      ]
+      ]*/
 
       this.setState({
-        folders: newFolder,
+        /*folders: newFolder,*/
         notes: newNotesArray
               })
   

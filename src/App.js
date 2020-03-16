@@ -35,8 +35,11 @@ class App extends Component {
   };
   
   
+  
 
   handleAddNote = (noteName, noteContent, noteFolder) => {
+ 
+  
     const newNoteName = [
       ...this.state.notes,
       {name: noteName}
@@ -66,17 +69,22 @@ class App extends Component {
           content: this.newNoteContent          
         }
       }
+      
     })
+     
   };
 
+
+  
   render() {
     
     const { store } = this.state
     
     const folderButtonClick = (folderId) => {
       this.setState({ currentTabIndex: folderId })
-      
+      console.log(store.folders)
     }
+    console.log(this.state.store.folders)
 
     const noteButtonClick = (id) => {
       this.setState({ currentNoteIndex: id })
@@ -92,6 +100,7 @@ class App extends Component {
       >
         {item.name}
         <span className = "number">
+
         {store.folders.length}</span>  
       </button>
       </li>))
@@ -102,6 +111,10 @@ class App extends Component {
 
     const currentTabDetail = store.notes.filter(num=> num.folderId === this.state.currentTabIndex).map((item) => 
       item)
+
+    const folderLength = currentTabDetail.length
+    console.log(folderLength)
+      
     
     const noteName = currentTabDetail.map((item, index) => (
       <div className = "noteSummary">
@@ -120,6 +133,8 @@ class App extends Component {
       ))
 
       const currentNoteDetailArr = store.notes.filter(num=> num.id === this.state.currentNoteIndex)
+
+      
 
       const currentNoteDetails = 
         <div className = "noteSummary">

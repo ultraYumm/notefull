@@ -8,7 +8,7 @@ class Addnoteform extends React.Component {
 
   onSubmitForm = (e) => {
     e.preventDefault()
-      this.props.onAddItem(e.target.itemToAdd.value, e.target.contentToAdd, e.target.folderToGo)
+      this.props.onAddItem(e.target.itemToAdd.value, e.target.contentToAdd.value, e.target.folderToGo.value)
   }
     
   render() {

@@ -62,7 +62,7 @@ class App extends Component {
     this.setState({
       store: {
        folders:{
-          name: this.newNote
+          name: this.newNoteFolder
         },
         notes: {
           name: this.newNoteName,
@@ -99,12 +99,14 @@ class App extends Component {
       onClick={() => folderButtonClick(item.id)}
       >
         {item.name}
-        <span className = "number">
+        <span className = "number"> 
+        {store.notes.filter(num=> num.folderId === item.id).length}
+        </span>
 
-        {store.folders.length}</span>  
-      </button>
+         </button>
       </li>))
 
+     
     const folderList = store &&
     store.folders && store.folders.map((item) =>(
              item.name))
@@ -112,8 +114,8 @@ class App extends Component {
     const currentTabDetail = store.notes.filter(num=> num.folderId === this.state.currentTabIndex).map((item) => 
       item)
 
-    const folderLength = currentTabDetail.length
-    console.log(folderLength)
+
+    
       
     
     const noteName = currentTabDetail.map((item, index) => (

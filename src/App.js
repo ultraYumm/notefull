@@ -36,12 +36,9 @@ class App extends Component {
   
   
   
-
-  handleAddNote = (noteName, noteContent, noteFolder) => {
- 
   
-    const handleAddNote = (noteName, noteContent, noteFolder) => {
-      console.log(noteName, noteContent, noteFolder)
+    handleAddNote = (noteName, noteContent, noteFolder, folderId) => {
+      console.log(noteName, noteContent, noteFolder, folderId)
   
       const newNotesArray = [
         ...this.state.notes,
@@ -49,20 +46,20 @@ class App extends Component {
         
       ]
   
-      const newFolderArray = [
+      const newFolder = [
         ...this.state.folders,
-        {name: noteFolder},
+        {name: noteFolder,
+        id: folderId},
         
       ]
 
       this.setState({
-        folders: newFolderArray,
+        folders: newFolder,
         notes: newNotesArray
               })
   
     };
      
-  };
 
 
   
@@ -97,9 +94,13 @@ class App extends Component {
       </li>))
 
      
-    const folderList = store &&
+   const folderList = store &&
     store.folders && store.folders.map((item) =>(
              item.name))
+
+   const folderIds = store &&
+   store.folders && store.folders.map((item) =>(
+                      item.id))
 
     const currentTabDetail = store.notes.filter(num=> num.folderId === this.state.currentTabIndex).map((item) => 
       item)
@@ -160,6 +161,7 @@ class App extends Component {
 
       <div><Addnoteform
       folderList = {folderList}
+      folderIds = {folderIds}
       onAddItem = {this.handleAddNote}
 
       /></div>

@@ -11,7 +11,7 @@ class AdNote extends React.Component {
            
             <button className= "NavCircleButtonNote"
             //onClick={() => props.onClickAdd(props.id)}
-            type= "sumbmit"
+            type= "submit"
           >
             + Note
           </button>

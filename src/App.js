@@ -9,29 +9,69 @@ import Addnoteform from './Addnoteform';
 //import Importanttab from './Importanttab';
 import RemoveNote from './RemoveNote';
 import Moment from 'react-moment';
+import STORE from './STORE'
 
+const newNote = () => {
+ 
+  return {
+    newname: "Panda",
+    folder: "Spangley"
+  }
+}
 
 
 
 class App extends Component {
 
-  static defaultProps = {
-    store: {
-      folders: [],
-      notes: [],
-      }
-  };
 
   state = {
     currentTabIndex: "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1",
-    currentNoteIndex: "cbc787a0-ffaf-11e8-8eb2-f2801f1b9fd1"
-  };
-
+    currentNoteIndex: "cbc787a0-ffaf-11e8-8eb2-f2801f1b9fd1",
+    store: STORE,
+    notes: STORE.notes, 
+    folders: STORE.folders
   
+
+  };
+  
+  
+
+  handleAddNote = (noteName, noteContent, noteFolder) => {
+    const newNoteName = [
+      ...this.state.notes,
+      {name: noteName}
+    ]
+     //will need to assign an ID to the new note
+
+     const newNoteContent = [
+      ...this.state.content,
+      {content: noteContent}
+    ]
+
+
+    const newNoteFolder = [
+      ...this.state.folders,
+      {name: noteFolder}
+    ]
+    //will need to assign an ID to the new folder
+
+   
+    this.setState({
+      store: {
+       folders:{
+          name: this.newNote
+        },
+        notes: {
+          name: this.newNoteName,
+          content: this.newNoteContent          
+        }
+      }
+    })
+  };
 
   render() {
     
-    const { store } = this.props
+    const { store } = this.state
     
     const folderButtonClick = (folderId) => {
       this.setState({ currentTabIndex: folderId })
@@ -57,7 +97,7 @@ class App extends Component {
       </li>))
 
     const folderList = store &&
-    store.folders  && store.folders.map((item) =>(
+    store.folders && store.folders.map((item) =>(
              item.name))
 
     const currentTabDetail = store.notes.filter(num=> num.folderId === this.state.currentTabIndex).map((item) => 
@@ -113,6 +153,7 @@ class App extends Component {
 
       <div><Addnoteform
       folderList = {folderList}
+      onAddItem = {this.handleAddNote}
 
       /></div>
       <div><AddNote/></div>

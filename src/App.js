@@ -40,37 +40,27 @@ class App extends Component {
   handleAddNote = (noteName, noteContent, noteFolder) => {
  
   
-    const newNoteName = [
-      ...this.state.notes,
-      {name: noteName}
-    ]
-     //will need to assign an ID to the new note
+    const handleAddNote = (noteName, noteContent, noteFolder) => {
+      console.log(noteName, noteContent, noteFolder)
+  
+      const newNotesArray = [
+        ...this.state.notes,
+        {name: noteName, content: noteContent},
+        
+      ]
+  
+      const newFolderArray = [
+        ...this.state.folders,
+        {name: noteFolder},
+        
+      ]
 
-     const newNoteContent = [
-      ...this.state.notes,
-      {content: noteContent}
-    ]
-
-
-    const newNoteFolder = [
-      ...this.state.folders,
-      {name: noteFolder}
-    ]
-    //will need to assign an ID to the new folder
-
-   
-    this.setState({
-      store: {
-       folders:{
-          name: this.newNoteFolder
-        },
-        notes: {
-          name: this.newNoteName,
-          content: this.newNoteContent          
-        }
-      }
-      
-    })
+      this.setState({
+        folders: newFolderArray,
+        notes: newNotesArray
+              })
+  
+    };
      
   };
 

@@ -8,19 +8,19 @@ class Addnoteform extends React.Component {
 
   onSubmitForm = (e) => {
     e.preventDefault()
-      this.props.onAddItem(e.target.itemToAdd.value, e.target.contentToAdd.value, this.state.folderSelection, this.state.folderId)
+      this.props.onAddItem(e.target.itemToAdd.value, e.target.contentToAdd.value, /*this.state.folderSelection, */this.state.folderId)
   }
 
   changeSelection(value) {
-    
-    if (value = "Important") {
-      var folderId = this.props.folderIds[0]
+  
+    var folderId;
+    if (value == "Important") {
+      folderId = this.props.folderIds[0]
+    } else if (value == "Super") {
+      folderId = this.props.folderIds[1]
+    } else {
+      folderId = this.props.folderIds[2]
     }
-    if (value = "Super") {
-      var folderId = this.props.folderIds[1]
-    }
-
-    else var folderId = this.props.folderIds[2]
     
     this.setState({ 
       

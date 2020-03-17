@@ -1,5 +1,8 @@
 import React from "react";
 import "./App.css";
+import { Link } from 'react-router-dom';
+import Addnoteform from './Addnoteform';
+
 
 
 class AdNote extends React.Component {
@@ -8,13 +11,17 @@ class AdNote extends React.Component {
   render() {
 
         return (
-           
             <button className= "NavCircleButtonNote"
-            //onClick={() => props.onClickAdd(props.id)}
             type= "submit"
-          >
+             >
             + Note
-          </button>
+             <Link to = {`/add-note/`}>
+              <Addnoteform
+               folderList = {this.props.folderList}
+               folderIds = {this.props.folderIds}
+               onAddItem = {this.props.handleAddNote}/>
+               </Link>
+            </button>
           
         )
   }

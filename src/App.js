@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Route, Link} from 'react-router-dom';
 import './App.css';
 import Nav from './Nav';
 import AddFolder from './AddFolder';
@@ -10,6 +11,7 @@ import Addnoteform from './Addnoteform';
 import RemoveNote from './RemoveNote';
 import Moment from 'react-moment';
 import STORE from './STORE'
+import Folderbuttons from './Folderbuttons';
 
 const newNote = () => {
  
@@ -33,11 +35,9 @@ class App extends Component {
   
 
   };
+   
   
-  
-  
-  
-    handleAddNote = (noteName, noteContent, /*noteFolder, */folderId) => {
+      handleAddNote = (noteName, noteContent, /*noteFolder, */folderId) => {
       console.log(noteName, noteContent, /*noteFolder, */folderId)
   
       const newNotesArray = [
@@ -62,13 +62,9 @@ class App extends Component {
   
     };
      
-
-
-  
   render() {
     
-    const { store } = this.state
-    
+       
     const folderButtonClick = (folderId) => {
       this.setState({ currentTabIndex: folderId })
       console.log(this.state.folders)
@@ -154,20 +150,28 @@ class App extends Component {
        <div className = "folderBox">
          {buttons}
        <div><AddFolder/></div> 
-       </div>    
+       </div>
+
+       
 
        {this.state && this.state.notes.length && this.state.folders.length && (
        <div className= "noteList">{noteName}</div>
        )}
 
-      <div><Addnoteform
+      <div>
+      <Route 
+        exact path = '/'
+        render = { () =>
+        <AddNote
       folderList = {folderList}
       folderIds = {folderIds}
       onAddItem = {this.handleAddNote}
+      />}
+      />
 
-      /></div>
-      <div><AddNote/></div>
+      </div>
 
+      
       {this.state && this.state.notes.length && this.state.folders.length && (
        <div className= "noteDetail">{currentNoteDetails}</div>
        )}

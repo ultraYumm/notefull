@@ -17,6 +17,12 @@ font-size: 18px;
 
 }
 
+a {
+  color: #bdbdbd;
+  text-decoration: none;
+
+}
+
 .folderBox {
 background-color: #0b1b32;
 width: 600px;
